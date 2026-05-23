@@ -1,26 +1,132 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+@custom-variant dark (&:is(.dark *));
+
+/* Warm dark brown theme inspired by premium crypto dashboard */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background:        #110c09;   /* deepest bg */
+  --foreground:        #f0e8e0;
+  --card:              #1c1410;   /* card surface */
+  --card-foreground:   #f0e8e0;
+  --popover:           #211810;
+  --popover-foreground:#f0e8e0;
+  --primary:           #e07b28;   /* orange */
+  --primary-foreground:#ffffff;
+  --secondary:         #2a1e16;
+  --secondary-foreground: #f0e8e0;
+  --muted:             #241a12;
+  --muted-foreground:  #8a7060;
+  --accent:            #2e2018;
+  --accent-foreground: #f0e8e0;
+  --destructive:       #f6465d;
+  --border:            #2e2018;
+  --input:             #2a1e16;
+  --ring:              #e07b28;
+  --radius:            0.75rem;
+
+  /* Trading tokens */
+  --green: #0ecb81;
+  --red:   #f6465d;
+  --orange: #e07b28;
+
+  /* Sidebar */
+  --sidebar:              #150f0a;
+  --sidebar-foreground:   #f0e8e0;
+  --sidebar-primary:      #e07b28;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent:       #2a1e16;
+  --sidebar-accent-foreground: #f0e8e0;
+  --sidebar-border:       #2e2018;
+  --sidebar-ring:         #e07b28;
+}
+
+.dark {
+  --background:        #110c09;
+  --foreground:        #f0e8e0;
+  --card:              #1c1410;
+  --card-foreground:   #f0e8e0;
+  --popover:           #211810;
+  --popover-foreground:#f0e8e0;
+  --primary:           #e07b28;
+  --primary-foreground:#ffffff;
+  --secondary:         #2a1e16;
+  --secondary-foreground: #f0e8e0;
+  --muted:             #241a12;
+  --muted-foreground:  #8a7060;
+  --accent:            #2e2018;
+  --accent-foreground: #f0e8e0;
+  --destructive:       #f6465d;
+  --border:            #2e2018;
+  --input:             #2a1e16;
+  --ring:              #e07b28;
+  --sidebar:              #150f0a;
+  --sidebar-foreground:   #f0e8e0;
+  --sidebar-primary:      #e07b28;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent:       #2a1e16;
+  --sidebar-accent-foreground: #f0e8e0;
+  --sidebar-border:       #2e2018;
+  --sidebar-ring:         #e07b28;
 }
 
 @theme inline {
-  --color-background: var(--background);
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3a2818; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #4a3828; }
+
+/* Trading helpers */
+.text-up   { color: var(--green); }
+.text-down { color: var(--red); }
+.bg-up     { background-color: var(--green); }
+.bg-down   { background-color: var(--red); }
